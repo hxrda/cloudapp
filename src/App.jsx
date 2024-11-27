@@ -9,6 +9,9 @@ import {
 	Box,
 } from "@mui/material";
 
+// Generate unique IDs
+const generateUniqueId = () => `order_${Math.floor(Math.random() * 100000)}`;
+
 const products = [
 	{ id: 1, name: "Laptop", price: 1199.99 },
 	{ id: 2, name: "Mouse", price: 24.99 },
@@ -25,7 +28,7 @@ function App() {
 	const [selectedProduct, setSelectedProduct] = useState(products[0]);
 	const [selectedPayment, setSelectedPayment] = useState(paymentMethods[0]);
 	const [transaction, setTransaction] = useState({
-		id: crypto.randomUUID(),
+		id: generateUniqueId(),
 		type: "PURCHASE",
 		date: new Date().toISOString(),
 		paymentType: selectedPayment,
@@ -37,7 +40,7 @@ function App() {
 	// Functions
 	const handlePostTransaction = (type) => {
 		const newTransaction = {
-			id: crypto.randomUUID(),
+			id: generateUniqueId(),
 			type,
 			date: new Date().toISOString(),
 			paymentType: selectedPayment,
